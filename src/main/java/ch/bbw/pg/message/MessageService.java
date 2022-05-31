@@ -1,32 +1,40 @@
 package ch.bbw.pg.message;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+
 /**
- * MessageService
- * 
- * @author Peter Rutschmann
- * @version 25.06.2020
+ * @author Philipp Gatzka
+ * @version 31.05.2022
  */
 @Service
 public class MessageService {
-	@Autowired
-	private MessageRepository repository;
-	
-	public Iterable<Message> getAll(){
-		return repository.findAll();
-	}
+    private final MessageRepository repository;
 
-	public void add(Message message) {
-		repository.save(message);
-	}
+    private final Logger logger = LoggerFactory.getLogger(MessageService.class);
 
-	public void update(Long id, Message message) {
-		//save geht auch für update.
-		repository.save(message);
-	}
+    public MessageService(MessageRepository repository) {
+        this.repository = repository;
+    }
 
-	public void deleteById(Long id) {
-		repository.deleteById(id);
-	}
+    public Iterable<Message> getAll() {
+        logger.info("DB Transaction: select");
+        return repository.findAll();
+    }
+
+    public void add(Message message) {
+        logger.info("DB Transaction: insert");
+        repository.save(message);
+    }
+
+    public void update(Message message) {
+        logger.info("DB Transaction: update");
+        repository.save(message);
+    }
+
+    public void deleteById(Long id) {
+        logger.info("DB Transaction: delete");
+        repository.deleteById(id);
+    }
 }

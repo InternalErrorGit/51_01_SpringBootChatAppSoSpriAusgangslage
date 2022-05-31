@@ -2,13 +2,10 @@ package ch.bbw.pg.message;
 
 import org.springframework.data.repository.CrudRepository;
 /**
- * MessageRepository
- * 
- * @author Peter Rutschmann
- * @version 25.06.2020
+ * @author Philipp Gatzka
+ * @version 31.05.2022
  */
-                                                        //Klasse, id-Typ
 public interface MessageRepository extends CrudRepository<Message, Long>{
-	//Da wir eine embedded database verwenden, braucht es keine Conecction Information.
+
 }
 

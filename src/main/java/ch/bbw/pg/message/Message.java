@@ -11,6 +11,9 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.springframework.format.annotation.DateTimeFormat;
 
 /**
@@ -21,6 +24,9 @@ import org.springframework.format.annotation.DateTimeFormat;
  */
 @Entity
 @Table(name = "message")
+@Getter
+@Setter
+@ToString
 public class Message {
 	@Id
     @GeneratedValue(generator = "generatorMessage", strategy = GenerationType.SEQUENCE)
@@ -28,50 +34,14 @@ public class Message {
 	private Long id;
 	
 	@NotEmpty (message = "content may not be empty" )
-	@Size(min=2, max=512, message="Die Länge der Message muss 2 bis 512 Zeichen sein.")
+	@Size(min=2, max=512, message="message: Length 2 - 512 required")
 	private String content;
 	
 	//@NotEmpty (message = "author may not be empty" )
-	@Size(min=5, max=20, message="Die Länge des Autors 2 bis 20 Zeichen sein.")
+	@Size(min=5, max=20, message="author: Length 1 - 51 required")
 	private String author;
 	
 	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private Date origin ;
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getContent() {
-		return content;
-	}
-
-	public void setContent(String content) {
-		this.content = content;
-	}
-
-	public String getAuthor() {
-		return author;
-	}
-
-	public void setAuthor(String author) {
-		this.author = author;
-	}
-
-	public Date getOrigin() {
-		return origin;
-	}
-
-	public void setOrigin(Date origin) {
-		this.origin = origin;
-	}
-
-	@Override
-	public String toString() {
-		return "Message [id=" + id + ", content=" + content + ", author=" + author + ", origin=" + origin + "]";
-	}
 }

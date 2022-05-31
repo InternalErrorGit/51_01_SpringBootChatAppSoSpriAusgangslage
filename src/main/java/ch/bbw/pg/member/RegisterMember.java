@@ -1,42 +1,55 @@
 package ch.bbw.pg.member;
+
+import ch.bbw.pg.security.ValidPassword;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+
 /**
- * To regist a new Member
- * @author peter.rutschmann
- * @version 27.04.2020
+ * @author Philipp Gatzka
+ * @version 31.05.2022
  */
+@Getter
+@Setter
+@ToString
 public class RegisterMember {
-	private String prename;
-	private String lastname;
-	private String password;
-	private String confirmation;
-	
-	public String getPrename() {
-		return prename;
-	}
-	public void setPrename(String prename) {
-		this.prename = prename;
-	}
-	public String getLastname() {
-		return lastname;
-	}
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	public String getConfirmation() {
-		return confirmation;
-	}
-	public void setConfirmation(String confirmation) {
-		this.confirmation = confirmation;
-	}
-	@Override
-	public String toString() {
-		return "RegisterMember [prename=" + prename + ", lastname=" + lastname + ", password=" + password
-				+ ", confirmation=" + confirmation + "]";
-	}
+
+    @NotEmpty(message = "username may not be empty")
+    @Size(min = 5, max = 51, message = "username: length 0 - 50 required")
+    private String username;
+
+    @NotEmpty(message = "firstname may not be empty")
+    @Size(min = 2, max = 25, message = "firstname: length 0 - 50 required")
+    private String firstname;
+
+    @NotEmpty(message = "lastname may not be empty")
+    @Size(min = 2, max = 25, message = "lastname: length 0 - 50 required")
+    private String lastname;
+
+    @NotEmpty(message = "password may not be empty")
+    @ValidPassword
+    private String password;
+
+    @NotEmpty(message = "confirmation may not be empty")
+    private String confirmation;
+
+    private String errorMessage;
+
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+        this.username = updateUsername();
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+        this.username = updateUsername();
+    }
+
+    private String updateUsername() {
+        return (this.firstname + "." + this.lastname).toLowerCase();
+    }
 }

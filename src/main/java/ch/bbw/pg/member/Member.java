@@ -1,5 +1,9 @@
 package ch.bbw.pg.member;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
@@ -10,6 +14,9 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "member")
+@Getter
+@Setter
+@ToString
 public class Member {
     @Id
     @GeneratedValue(generator = "generatorMember", strategy = GenerationType.SEQUENCE)
@@ -33,57 +40,14 @@ public class Member {
 
     private String authority;
 
-    public Long getId() {
-        return id;
+    public static Member fromRegisterMember(RegisterMember registerMember, String hashedPassword) {
+        Member member = new Member();
+        member.setFirstname(registerMember.getFirstname());
+        member.setLastname(registerMember.getLastname());
+        member.setUsername(registerMember.getUsername());
+        member.setAuthority("member");
+        member.setPassword(hashedPassword);
+        return member;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getFirstname() {
-        return firstname;
-    }
-
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-
-    public String getLastname() {
-        return lastname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
-
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getAuthority() {
-        return authority;
-    }
-
-    public void setAuthority(String authority) {
-        this.authority = authority;
-    }
-
-    @Override
-    public String toString() {
-        return "Member{id=" + id + ", firstname='" + firstname + "', lastname='" + lastname + "', password='" + password + "', username='" + username + "', authority='" + authority + "'}";
-    }
 }
