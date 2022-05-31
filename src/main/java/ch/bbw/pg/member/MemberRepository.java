@@ -1,4 +1,4 @@
-package ch.bbw.pr.sospri.member;
+package ch.bbw.pg.member;
 
 import org.springframework.data.repository.CrudRepository;
 /**

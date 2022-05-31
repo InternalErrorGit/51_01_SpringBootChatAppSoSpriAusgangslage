@@ -1,4 +1,4 @@
-package ch.bbw.pr.sospri;
+package ch.bbw.pg;
 
 import java.util.Date;
 
@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import ch.bbw.pr.sospri.member.Member;
-import ch.bbw.pr.sospri.member.MemberService;
-import ch.bbw.pr.sospri.message.Message;
-import ch.bbw.pr.sospri.message.MessageService;
+import ch.bbw.pg.member.Member;
+import ch.bbw.pg.member.MemberService;
+import ch.bbw.pg.message.Message;
+import ch.bbw.pg.message.MessageService;
 /**
  * ChannelsController
  * @author Peter Rutschmann
@@ -50,7 +50,7 @@ public class ChannelsController {
 		}
 		// Hack solange es kein authenticated member hat
 		Member tmpMember = memberservice.getById(4L);
-		message.setAuthor(tmpMember.getPrename() + " " + tmpMember.getLastname());
+		message.setAuthor(tmpMember.getFirstname() + " " + tmpMember.getLastname());
 		message.setOrigin(new Date());
 		System.out.println("message: " + message);
 		messageservice.add(message);

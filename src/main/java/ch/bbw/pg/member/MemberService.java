@@ -1,4 +1,4 @@
-package ch.bbw.pr.sospri.member;
+package ch.bbw.pg.member;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

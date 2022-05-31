@@ -1,4 +1,4 @@
-package ch.bbw.pr.sospri.member;
+package ch.bbw.pg.member;
 /**
  * To regist a new Member
  * @author peter.rutschmann

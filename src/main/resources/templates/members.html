@@ -43,7 +43,7 @@
                     </thead>
                     <tbody>
                       <tr th:each="member : ${members}">
-                        <td th:text="${member.prename}"></td>
+                        <td th:text="${member.firstname}"></td>
                         <td th:text="${member.lastname}"></td>
                         <td th:text="${member.authority}"></td>
                         <td><a class="btn btn-success" th:href="@{/edit-member?id={id}(id=${member.id})}">Edit</a></td>

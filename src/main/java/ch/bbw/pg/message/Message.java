@@ -1,4 +1,4 @@
-package ch.bbw.pr.sospri.message;
+package ch.bbw.pg.message;
 
 import java.util.Date;
 

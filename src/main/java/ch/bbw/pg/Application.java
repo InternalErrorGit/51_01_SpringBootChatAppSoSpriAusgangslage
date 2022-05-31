@@ -1,4 +1,4 @@
-package ch.bbw.pr.sospri;
+package ch.bbw.pg;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

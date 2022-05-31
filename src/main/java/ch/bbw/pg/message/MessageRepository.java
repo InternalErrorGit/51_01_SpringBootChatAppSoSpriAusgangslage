@@ -1,4 +1,4 @@
-package ch.bbw.pr.sospri.message;
+package ch.bbw.pg.message;
 
 import org.springframework.data.repository.CrudRepository;
 /**

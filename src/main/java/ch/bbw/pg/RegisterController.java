@@ -1,4 +1,4 @@
-package ch.bbw.pr.sospri;
+package ch.bbw.pg;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -6,8 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import ch.bbw.pr.sospri.member.MemberService;
-import ch.bbw.pr.sospri.member.RegisterMember;
+import ch.bbw.pg.member.MemberService;
+import ch.bbw.pg.member.RegisterMember;
 /**
  * RegisterController
  * @author Peter Rutschmann

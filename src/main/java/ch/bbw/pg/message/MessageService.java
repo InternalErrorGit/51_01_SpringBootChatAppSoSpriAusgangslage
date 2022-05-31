@@ -1,4 +1,4 @@
-package ch.bbw.pr.sospri.message;
+package ch.bbw.pg.message;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
