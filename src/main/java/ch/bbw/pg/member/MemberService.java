@@ -2,9 +2,14 @@ package ch.bbw.pg.member;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collections;
 import java.util.Objects;
 
 /**
@@ -13,7 +18,7 @@ import java.util.Objects;
  */
 @Service
 @Transactional
-public class MemberService {
+public class MemberService implements UserDetailsService {
 
     private final Logger logger = LoggerFactory.getLogger(MemberService.class);
 
@@ -77,5 +82,12 @@ public class MemberService {
         }
         logger.info("DB Transaction failed: select: username does not exist in repository: " + username);
         return null;
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Member member = getByUserName(username);
+        //TODO
+        return new User(member.getUsername(), member.getPassword(), Collections.emptyList());
     }
 }
