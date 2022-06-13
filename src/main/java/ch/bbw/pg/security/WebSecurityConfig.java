@@ -44,7 +44,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/get-members").hasRole("admin")
                 .antMatchers("/get-channel").hasRole("user")
                 .anyRequest().authenticated()
-                .and().formLogin()
+                .and().formLogin().loginPage("login").permitAll()
+                .and().logout().permitAll()
                 .and().httpBasic()
                 .and().exceptionHandling().accessDeniedPage("/403.html");
     }
